@@ -11,14 +11,29 @@ unsigned char keyVal;
 
 unsigned char arr[100];
 int index = 0;
+int flag = 0;
 
 void OnRender() {
 
 }
 
+void myMouse(int button, int state, int x, int y) {
+	if (state == GLUT_DOWN || state == GLUT_UP) {
+		system("cls");
+		std::cout << "Coordinat X : " << x << " | " << "Coordinat Y : " << y << std::endl;
+	}
+}
+
+void myMouseMotion(int x, int y) {
+	system("cls");
+	std::cout << "Coordinat X : " << x << " | " << "Coordinat Y : " << y << std::endl;
+}
+
 void KeyboardDown(unsigned char key, int xMouse, int yMouse) {
 	arr[index] = key;
-	std::cout << arr[index];
+	if (arr[index] != NULL) {
+		std::cout << arr[index];
+	}
 	index++;
 	glutPostRedisplay();
 }
@@ -48,6 +63,8 @@ int main(int argc, char** argv) {
 	glutInitWindowSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 	glutCreateWindow("Event Handler Test");
 	glutDisplayFunc(OnRender);
+	glutMouseFunc(myMouse);
+	glutMotionFunc(myMouseMotion);
 	glutKeyboardFunc(KeyboardDown);
 	glutSpecialFunc(KeyboardSpecialDown);
 	glutKeyboardUpFunc(KeyboardUp);
