@@ -7,25 +7,33 @@
 #define CANVAS_WIDTH WINDOW_WIDTH
 #define CANVAS_HEIGHT WINDOW_HEIGHT
 
+unsigned char keyVal;
+
+unsigned char arr[100];
+int index = 0;
+
 void OnRender() {
 
 }
 
 void KeyboardDown(unsigned char key, int xMouse, int yMouse) {
-	std::cout << key;
+	arr[index] = key;
+	std::cout << arr[index];
+	index++;
 	glutPostRedisplay();
 }
 
-void KeyboardSpecialDown(int key, int xMouse, int yMouse) {
-	std::cout << key;
+void KeyboardSpecialDown(int specKey, int xMouse, int yMouse) {
+	std::cout << specKey;
 	glutPostRedisplay();
 }
 
 void KeyboardUp(unsigned char key, int xMouse, int yMouse) {
 	system("cls");
+	arr[index - 1] = NULL;
 }
 
-void KeyboardSpecialUp(int key, int xMouse, int yMouse) {
+void KeyboardSpecialUp(int specKey, int xMouse, int yMouse) {
 	system("cls");
 }
 
